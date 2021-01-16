@@ -4,7 +4,7 @@ label{
   font-weight: 400;
 }
 
-input{
+.input{
   padding:13px 10px 13px 5px;
   border:none;
   border-bottom:.8px solid #fff;
@@ -26,3 +26,7 @@ input{
     font-size:15px;
   }
 
+.popup{
+  width:70%;
+  min-width:0;
+}

@@ -23,14 +23,9 @@ const Home: React.FC = () => {
   return (
     <main>
       <Header />
-      <CSSTransition 
-        in={visible} 
-        timeout={500} 
-        classNames='fade'
-        // unmountOnExit
-      >
-        <Task />
-      </CSSTransition>
+      
+      <Task visible={visible} modalHandler={modalHandler} />
+      
       <h1>Home</h1>
       <button type='submit' onClick={signOut} style={{marginTop:'20%'}}>
         Signout

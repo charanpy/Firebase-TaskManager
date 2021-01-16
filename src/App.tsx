@@ -11,11 +11,12 @@ const App: React.FC = () => {
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
+        console.log(userAuth);
         const { displayName, email, uid: id } = userAuth;
         addUser({ id, email, displayName });
       }
     });
-  }, [addUser]);
+  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line

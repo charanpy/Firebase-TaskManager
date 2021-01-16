@@ -1,0 +1,28 @@
+label{
+  font-family: 'Open sans Condensed',sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+input{
+  padding:13px 10px 13px 5px;
+  border:none;
+  border-bottom:.8px solid #fff;
+  margin-bottom: 2rem;
+  min-width:27rem;
+  font-family: 'Open Sans';
+  background: #121212;
+  color:white;
+}  
+  input:focus,input:active{
+    outline:none;
+    border-bottom:.8px solid #fff;
+    background:#121212;
+  }
+  input::placeholder{
+    font-family: 'Open sans Condensed',sans-serif;
+    color: white;
+    font-weight: 400;
+    font-size:15px;
+  }
+

@@ -1,0 +1,49 @@
+header{
+  position: fixed;
+  width: 100%;
+  height:12vh;
+  display: flex;
+  align-items: center;
+  background: rgba(105,105,105,.2);
+}
+
+.left_container{
+  width:70%;
+  display: flex;
+}
+.right_container{
+  width:30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+img{
+  margin-left: 5%;
+  width:5rem;
+}
+
+.left_container h2{
+  font-family: 'Open Sans Condensed';
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin-left: 3%;
+}
+.user{
+  margin-right: 15%;
+}
+
+@media (max-width:900px){
+  img{
+    width:3.3rem;
+    margin-left:1.4rem;
+  }
+  .left_container h2 {
+    font-family: 'Open Sans Condensed';
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-left:5%;
+  }
+  header{
+    height:10vh ;
+  }
+}

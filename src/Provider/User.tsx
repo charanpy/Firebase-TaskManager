@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 interface User {
   id: string;
@@ -26,27 +26,26 @@ const UserProvider: React.FC = ({ children }) => {
     displayName: '',
   });
   const { id, email, displayName } = user;
-  const addUser = (userInfo: User) => {
+  const addUser = useCallback((userInfo: User) => {
     const {
       id: uid,
       email: userEmail,
       displayName: UserdisplayName,
     } = userInfo;
-  
     setUser({
       id: uid,
       email: userEmail,
       displayName: UserdisplayName,
     });
-  };
+  }, [])
 
-  const setUserNull = () => {
+  const setUserNull = useCallback(() => {
     setUser({
       id: '',
       email: '',
       displayName: '',
     })
-  }
+  }, [])
   return (
     <UserContext.Provider
       value={{

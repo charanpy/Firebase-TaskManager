@@ -1,0 +1,109 @@
+.taskList{
+  display: flex;
+  justify-content:space-around;
+  flex-wrap: wrap;
+}
+h1{
+  color:white;
+}
+
+.task{
+  width:25%;
+  border-radius: 10px;
+  height:20rem;
+  margin-top:5%;
+  background: black;
+  box-shadow: 2px 5px 5px #000;
+  margin-bottom: 5%;
+  border:.5px solid rgba(255,255,255,.159);
+  transition:background 400ms linear;
+  position: relative;
+}
+
+.task:hover{
+  background:#121212;
+}
+
+.task_details{
+  padding:1rem;
+}
+
+.task_details p{
+  font-size:1.3rem;
+  color:#ccc;
+  font-family:'Open Sans';
+  font-weight:400;
+}
+
+.task_details h1{
+  font-family:'Roboto';
+  font-weight:500;
+  font-size:2rem;
+}
+
+
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(-10px)
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity, transform 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  display: flex;
+}
+
+.fade-exit-active {
+  opacity: 0;
+ transition: opacity 500ms;
+
+}
+
+.close {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  outline: none;
+  border: none;
+  background: #121212;
+  cursor: pointer;
+}
+
+.close span {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #BB86fc;
+}
+
+
+.del{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+}
+.del button{
+  background:none;
+  color:red !important;
+  font-size:1.9rem;
+  outline:none;
+  border:none;
+  cursor: pointer;
+}
+
+.del button:active, .del button:focus{
+   outline:none;
+   border:none;
+  background:none;
+}
+@media(max-width: 800px){
+  .task{
+    width:45%;
+    height:15rem;
+  }
+}

@@ -1,5 +1,5 @@
 .add{
-  position: absolute;
+  position: fixed;
   bottom:5%;
   right:5%;
   height:3.5rem;
@@ -14,6 +14,10 @@
   border:none;
   outline:none;  
 }
+.home{
+  padding:5rem;
+  margin-top:5%;
+}
 
 .add:focus,.add:active{
   border:none;
@@ -27,3 +31,9 @@
   padding: 0;
 }
 
+@media(max-width: 800px){
+  .home{
+  margin-top: 12vh;
+  padding: 2rem;
+  }
+}

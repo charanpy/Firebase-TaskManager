@@ -4,7 +4,9 @@ header{
   height:12vh;
   display: flex;
   align-items: center;
-  background: rgba(105,105,105,.2);
+  background: black;
+  top:0;
+  left:0;
 }
 
 .left_container{
@@ -15,6 +17,10 @@ header{
   width:30%;
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  background: none;
+  border:none;
+  outline:none;
 }
 
 img{

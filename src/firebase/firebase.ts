@@ -1,15 +1,21 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+// eslint-disable-next-line
+import 'firebase/auth';
+// eslint-disable-next-line
 import 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD6t3BoQzr9afYuOXnZu2lj8EQoofvtsNQ',
-  authDomain: 'todoapp-f1b9e.firebaseapp.com',
-  projectId: 'todoapp-f1b9e',
-  storageBucket: 'todoapp-f1b9e.appspot.com',
-  messagingSenderId: '985697440739',
-  appId: '1:985697440739:web:06552ec230908268e046d6',
-  measurementId: 'G-GT54M7XDPP',
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDERID,
+  appId: process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
+
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -57,10 +63,15 @@ export const createUserDocument = async (
 export const signUp = async (userCredentials: SignUpInfo, name: string) => {
   try {
     const { email, password } = userCredentials;
-    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    const userDoc = await auth.createUserWithEmailAndPassword(email, password);
+    await userDoc.user?.updateProfile({
+      displayName: name,
+    })
+    const { user } = userDoc;
     const username = {
       name: user?.displayName || name,
     };
+
     return createUserDocument(user, username);
   } catch (e) {
     return e;
@@ -98,10 +109,55 @@ export const signIn = async (email: string, password: string) => {
     const { user } = await firebase
       .auth()
       .signInWithEmailAndPassword(email, password);
+    if (!user) throw new Error('Invalid data')
     await snapshot(user);
     return;
   } catch (error) {
     // eslint-disable-next-line
-    alert(error.message);
+      alert(error.message);
   }
 };
+
+const generateId = (): string => uuidv4();
+
+export const addTask = async (task: string, userId: string) => {
+  const id = generateId();
+  const tasksRef = await (
+    await firebase.firestore().doc(`tasks/${userId}`).get()
+  ).exists;
+  if (!tasksRef) {
+    await firebase
+      .firestore()
+      .doc(`tasks/${userId}`)
+      .set({ [id]: task });
+  } else {
+    await firebase
+      .firestore()
+      .doc(`tasks/${userId}`)
+      .update({ [id]: task });
+  }
+};
+
+export const addATask = async (task: string, userId: string) => {
+  const id = generateId();
+  await firebase.firestore().collection('tasks').add({
+    userId,
+    id,
+    task,
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+  });
+};
+
+
+export const getUpdatedTasks = async (userId: string) => {
+  const tasksRef = await firebase
+    .firestore()
+    .collection('tasks')
+    .where('userId', '==', userId);
+ 
+  return tasksRef;
+};
+
+export const deleteTask = async (id:string) => {
+  await firebase.firestore().collection('tasks').doc(id).delete();
+}

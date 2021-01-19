@@ -27,19 +27,22 @@ const Login: React.FC = () => {
 
   const submitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    
     await signIn(email, password);
-    setFormData({
-      ...formData,
-      email: '',
-      password: '',
-    });
+    
   };
 
   const googleSignInHandler = async (
     e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     e.preventDefault();
+    setFormData({
+      ...formData,
+      email: '',
+      password: '',
+    });
     await signinWithGoogle();
+    
   };
 
   return (
@@ -61,7 +64,9 @@ const Login: React.FC = () => {
           onChange={handleChangeHandler}
         />
         <div className='buttons'>
-          <CustomButton onClickHandler={submitHandler}>Login</CustomButton>
+          <CustomButton onClickHandler={submitHandler} inverted>
+            Login
+          </CustomButton>
           <CustomButton isGoogleSignIn onClickHandler={googleSignInHandler}>
             SIGN IN WITH GOOGLE
           </CustomButton>

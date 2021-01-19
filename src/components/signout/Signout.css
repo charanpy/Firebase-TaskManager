@@ -1,0 +1,45 @@
+.slide-enter {
+  opacity: 0;
+  transform: translateY(-10px)
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity, transform 500ms;
+}
+
+.slide-exit {
+  opacity: 1;
+
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+
+  transition: opacity 500ms,transform 200ms linear;
+
+}
+
+.signout_Modal{
+  padding:1.3rem;
+  background:#121212;
+  border:.5px solid rgba(255,255,255,0.2);
+  position:absolute;
+  top:10vh;
+  right:1rem;
+}
+.signout_Modal button{
+  background:none;
+  outline:none;
+  border:none;
+  font-size:1.3rem;
+  color:white;
+  font-family:'Open Sans Condensed';
+  text-transform:uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff4c68;
+}

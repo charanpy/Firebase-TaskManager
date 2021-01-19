@@ -3,7 +3,7 @@ import './TextInput.css';
 
 const TextInput: React.FC<TextInputProps> = (props) => (
   <>
-    <input {...props} className={props.popup ? 'input popup' : 'input'} />
+    <input {...props} className={props.popup ? 'input popup' : 'input'} autoComplete='off' />
   </>
 );
 
@@ -13,7 +13,7 @@ interface TextInputProps {
   placeholder: string;
   name: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  popup?:boolean
+  popup?:number
   
 }
 

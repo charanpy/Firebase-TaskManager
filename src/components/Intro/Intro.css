@@ -1,0 +1,39 @@
+.greet h1{
+  font-family:'Bebas Nue',cursive;
+  font-size:3rem;
+  margin:.8rem 0 .5rem 0;
+  text-transform: capitalize;
+}
+
+.note{
+margin-top:1.6rem;
+}
+.greet p{
+  color:#ccc;
+  font-family: 'Roboto';
+  font-size:1.9rem;
+  margin:0;
+}
+
+.heading{
+  margin-top:2%;
+  color:white;
+  font-family:'Roboto';
+  font-weight:400;
+  font-size:1.5rem;
+  line-height: 2;
+}
+@media(max-width:800px){
+  .greet h1 {
+    font-family:'Bebas Nue';
+    margin-left:-1%;
+  }
+  .note p{
+    font-size:1.8rem;
+    line-height: 1.5;
+  }
+  .heading{
+    line-height: 1.5;
+    margin-top:8%;
+  }
+}

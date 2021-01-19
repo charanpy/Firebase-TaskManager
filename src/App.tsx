@@ -7,21 +7,23 @@ import { auth } from './firebase/firebase';
 import { UserContext } from './Provider/User';
 
 const App: React.FC = () => {
-  const { addUser, id: uid1, email: username } = useContext(UserContext);
+  const { addUser, id: uid1, email: username, setUserNull } = useContext(
+    UserContext,
+  );
+
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
+    const authState = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        console.log(userAuth);
         const { displayName, email, uid: id } = userAuth;
         addUser({ id, email, displayName });
       }
     });
-  }, []);
+    return () => {
+      authState();
+      setUserNull();
+    };
+  }, [addUser, setUserNull]);
 
-  useEffect(() => {
-    // eslint-disable-next-line
-    console.log(100, uid1);
-  }, [uid1]);
   return (
     <div className='App'>
       <Switch>
@@ -37,7 +39,8 @@ const App: React.FC = () => {
         <Route
           exact
           path='/'
-          render={() => (uid1 && username ? <Home /> : <Redirect to='/login' />)}
+          render={() =>
+            uid1 && username ? <Home /> : <Redirect to='/login' />}
         />
       </Switch>
     </div>

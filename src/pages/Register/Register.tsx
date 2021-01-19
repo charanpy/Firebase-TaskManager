@@ -29,26 +29,23 @@ const Register: React.FC = (props) => {
 
   const submitHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const response = await signUp({ email, password }, displayName);
-
-    if (response.message) {
-      // eslint-disable-next-line
-      alert(response.message);
-      setFormData({
-        ...formData,
-        email: '',
-        password: '',
-        displayName: '',
-      });
-      return;
+    try {
+      await signUp({ email, password }, displayName);
+    } catch (error) {
+      throw new Error('Something went wrong')
     }
-    setFormData({
-      ...formData,
-      email: '',
-      password: '',
-      displayName: '',
-    });
+     
 
+    // if (response.message) {
+    //   // eslint-disable-next-line
+    //   alert(response.message);
+    //   setFormData({
+    //     ...formData,
+    //     email: '',
+    //     password: '',
+    //     displayName: '',
+    //   });
+    // }
   };
 
   const googleSignInHandler = async (
@@ -83,7 +80,9 @@ const Register: React.FC = (props) => {
           onChange={handleChangeHandler}
         />
         <div className='buttons'>
-          <CustomButton onClickHandler={submitHandler}>Signup</CustomButton>
+          <CustomButton onClickHandler={submitHandler} inverted>
+            Signup
+          </CustomButton>
           <CustomButton isGoogleSignIn onClickHandler={googleSignInHandler}>
             SIGN IN WITH GOOGLE
           </CustomButton>
